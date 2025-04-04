@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile | Palak-PK</title>
+  <style>
+    :root {
+      --accent: #0ff;
+      --bg-dark: #000;
+      --text-light: #fff;
+      --glass-bg: rgba(0, 255, 255, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Share Tech Mono', monospace;
+      border-left: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .profile-header {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(6px);
+      transition: 0.4s ease;
+    }
+
+    .profile-header:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px var(--accent);
+    }
+
+    .profile-header img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 2px solid var(--accent);
+      transition: transform 0.3s ease, filter 0.4s ease;
+    }
+
+    .profile-header img:hover {
+      transform: scale(1.05);
+      filter: hue-rotate(180deg);
+    }
+
+    .info h1 {
+      font-size: 2.5rem;
+      color: var(--accent);
+    }
+
+    .info p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tab-btn {
+      padding: 0.5rem 1.2rem;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--accent);
+      color: var(--bg-dark);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .hover-card {
+      background: var(--glass-bg);
+      padding: 1.5rem;
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.5rem;
+      background-color: var(--accent);
+      color: #000;
+      font-weight: bold;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #0cc;
+      color: #000;
+      transform: translateY(-2px);
+    }
+    /* Custom cursor circle */
+    .cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+  }
+    a:hover ~ .cursor,
+    button:hover ~ .cursor {
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+  
+  </style>
+</head>
+<body>
+    <div class="cursor" id="cursor"></div>
+
+  <div class="container">
+    <div class="profile-header">
+      <img src="profile.jpg" alt="Profile Image">
+      <div class="info">
+        <h1>Palak-PK</h1>
+        <p id="bio"></p>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('about')">About</button>
+      <button class="tab-btn" onclick="showTab('skills')">Skills</button>
+      <button class="tab-btn" onclick="showTab('projects')">Projects</button>
+      <button class="tab-btn" onclick="showTab('contact')">Contact</button>
+    </div>
+
+    <div id="about" class="tab-content active hover-card">
+      <h2>About Me</h2>
+      <p>Hello! I'm Palak, a passionate frontend developer who loves turning ideas into interactive and beautiful websites. Currently exploring cool CSS animations, pixel-perfect layouts, and JS magic.</p>
+    </div>
+
+    <div id="skills" class="tab-content hover-card">
+      <h2>Skills</h2>
+      <ul>
+        <li>HTML, CSS, JavaScript</li>
+        <li>Responsive Design</li>
+        <li>Git & GitHub</li>
+        <li>Figma / UI Design</li>
+        <li>React (basic)</li>
+      </ul>
+    </div>
+
+    <div id="projects" class="tab-content hover-card">
+      <h2>Projects</h2>
+      <p>Explore some of my recent works demonstrating UI/UX skills and interactivity.</p>
+      <a href="projects.html" class="btn">View Projects</a>
+    </div>
+
+    <div id="contact" class="tab-content hover-card">
+      <h2>Contact</h2>
+      <p>Let’s connect and create something awesome together!</p>
+      <a href="mailto:palakpk@example.com" class="btn">Email Me</a>
+    </div>
+  </div>
+
+  <script>
+    // Typing effect for bio
+    const text = "Frontend Magician | Web Developer | Code Crafter";
+    let i = 0;
+    function typing() {
+      if (i < text.length) {
+        document.getElementById("bio").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 50);
+      }
+    }
+    typing();
+   
+    // Tab switching
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+    
+  </script>
+</body>
+</html>
